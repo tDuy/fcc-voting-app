@@ -60,7 +60,6 @@
 
 //----------------------------------------------
    function onSubmit() {
-      alert('submit');
       var quesVal = document.querySelector('input[name="ques"]').value;
       var str = '';
       document.querySelectorAll('input[name="op[]"]').forEach((input, index) => {
@@ -68,17 +67,24 @@
          str += `&op[${index}]=${val}`;
       });
       var queryString = 'ques=' + encodeURIComponent(quesVal) + str;
-      console.log(queryString);
       ajaxFunctions.ajaxRequest('POST', apiUrl, queryString, addPollComplete);
    }
 
    function addPollComplete(data) {
       // congrats
-      console.log('Poll added!');
+      var obj = JSON.parse(data);
+      var url = appUrl + '/poll/' + obj['id'];
+      content.innerHTML = `
+        <div class="has-text-centered">
+            <p class="title">Congratulations!</p>
+            <p>Your poll has been posted to</p>
+            <p><a href="${url}">${url}</a></p>
+        </div>
+      `;
+      
    }
 
     function showPolls(data) {
-      console.log(data);
       var html = '';
       var pollsArray = JSON.parse(data);
 
@@ -88,7 +94,7 @@
          <div class="box level">
          <div class="level-left">
           <div class="level-item">
-             <a href="${pollUrl}" target="_blank">${poll.question}</a>
+             <a href="${pollUrl}">${poll.question}</a>
           </div>
          </div>
          <div class="level-right">

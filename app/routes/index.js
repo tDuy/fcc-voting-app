@@ -1,7 +1,6 @@
 'use strict';
 
 var path = process.cwd();
-var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
 var PollHandler = require(path + '/app/controllers/pollHandler.server.js');
 var bodyParser = require('body-parser');
 
@@ -11,32 +10,19 @@ module.exports = function (app, passport) {
 		if (req.isAuthenticated()) {
 			return next();
 		} else {
-			res.redirect('/login');
+			res.redirect('/');
 		}
 	}
 
-	var clickHandler = new ClickHandler();
 	var pollHandler = new PollHandler();
 
 	app.route('/')
-		.get(isLoggedIn, function (req, res) {
-			res.sendFile(path + '/public/index.html');
-		});
-
-	app.route('/login')
-		.get(function (req, res) {
-			res.sendFile(path + '/public/login.html');
-		});
+		.get(pollHandler.getAllPoll);
 
 	app.route('/logout')
 		.get(function (req, res) {
 			req.logout();
-			res.redirect('/login');
-		});
-
-	app.route('/profile')
-		.get(isLoggedIn, function (req, res) {
-			res.sendFile(path + '/public/profile.html');
+			res.redirect('/');
 		});
 
 	app.route('/api/:id')
@@ -49,14 +35,9 @@ module.exports = function (app, passport) {
 
 	app.route('/auth/github/callback')
 		.get(passport.authenticate('github', {
-			successRedirect: '/',
-			failureRedirect: '/login'
+			successRedirect: '/dashboard',
+			failureRedirect: '/'
 		}));
-
-	app.route('/api/:id/clicks')
-		.get(isLoggedIn, clickHandler.getClicks)
-		.post(isLoggedIn, clickHandler.addClick)
-		.delete(isLoggedIn, clickHandler.resetClicks);
 	
 	app.route('/api/:id/polls')
 		.get(isLoggedIn, pollHandler.getPolls)
@@ -65,7 +46,8 @@ module.exports = function (app, passport) {
 	
 	app.route('/poll/:pid')
 		.get((req, res)=> {
-			res.sendFile(path + '/public/poll.html');
+			var obj =  req.isAuthenticated() ? req.user.github : false;
+			res.render('vote', {'user': obj} );
 		});
 	
 	app.route('/poll/:pid/getOne')
@@ -73,4 +55,11 @@ module.exports = function (app, passport) {
 		
 	app.route('/poll/:pid/vote')
 		.post(bodyParser.urlencoded({extended: true}), pollHandler.vote);
+		
+	app.route('/dashboard')
+		.get((req, res) => {
+			if( !req.isAuthenticated())
+				res.redirect('/');
+			res.render('dashboard', {'user': req.user.github, 'edit': true});
+		});
 };

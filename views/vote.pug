@@ -1,0 +1,38 @@
+doctype html
+head
+	meta(charset='UTF-8')
+	meta(name='viewport' content='width=device-width, initial-scale=1')
+	title Vote
+	link(rel='stylesheet'
+		href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css'
+	)
+	link(rel='stylesheet'
+		href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
+	)
+	link(rel="stylesheet" 
+	href="https://cdn.jsdelivr.net/npm/bulma-extensions@0.5.2/bulma-checkradio/bulma-checkradio.min.css"
+	)
+body
+include ./includes/nav.pug
+
+section.hero.is-info.is-bold
+	.hero-body
+		.container.has-text-centered
+			h1.title.is-1 DVote
+			h2.subtitle Create custom polls with live results.
+			if user
+				a#new-poll.button.is-info.is-inverted(href="/dashboard") Dashboard
+			else
+				a#new-poll.button.is-info.is-inverted(href="/auth/github") Login with Github
+				// a#my-polls.button.is-primary.is-inverted.is-outlined My Polls
+
+section.section.columns
+	div.column.is-one-third.has-text-centered
+		p.title.poll-title
+		p.subtitile
+	div#content.column.is-half
+
+script(src='/public/js/nav.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js')
+script(src="/common/ajax-functions.js")
+script(src="/public/js/viewPoll.client.js")

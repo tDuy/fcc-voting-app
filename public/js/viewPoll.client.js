@@ -9,9 +9,9 @@
 
     //---------------------------
     function fetchPoll(data){
-       console.log(data);
        poll = JSON.parse(data);
        pollTitle.innerText = poll.question;
+       pollTitle.nextSibling.innerText = 'by ' + poll.user_name;
        poll.options.forEach((option, index) => {
          let html = `
          <div class="box">

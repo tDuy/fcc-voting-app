@@ -1,0 +1,13 @@
+section.hero.is-info.is-bold
+	.hero-body
+		.container.has-text-centered
+			if user
+				h1.title.is-1 Dashboard
+				h2.subtitle What would you like to do today?
+				a#new-poll.button.is-info.is-inverted(href="#") New Poll
+				a#my-polls.button.is-primary.is-inverted.is-outlined My Polls
+			else
+				h1.title.is-1 DVote
+				h2.subtitle Create custom polls with live results.
+				a#new-poll.button.is-info.is-inverted(href="/auth/github") Login with Github
+				// a#my-polls.button.is-primary.is-inverted.is-outlined My Polls

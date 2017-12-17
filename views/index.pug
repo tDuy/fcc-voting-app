@@ -1,0 +1,28 @@
+doctype html
+head
+	meta(charset='UTF-8')
+	meta(name='viewport' content='width=device-width, initial-scale=1')
+	title Home
+	link(rel='stylesheet'
+		href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css'
+	)
+	link(rel='stylesheet'
+		href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
+	)
+body
+include ./includes/nav.pug
+// include ./includes/hero.pug
+section.hero.is-info.is-bold
+	.hero-body
+		.container.has-text-centered
+			h1.title.is-1 DVote
+			h2.subtitle Create custom polls with live results.
+			if user
+				a#new-poll.button.is-info.is-inverted(href="/dashboard") Dashboard
+			else
+				a#new-poll.button.is-info.is-inverted(href="/auth/github") Login with Github
+				// a#my-polls.button.is-primary.is-inverted.is-outlined My Polls
+
+include ./includes/view-polls.pug
+
+script(src='/public/js/nav.js')

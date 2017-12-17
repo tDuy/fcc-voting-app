@@ -1,0 +1,28 @@
+nav.navbar.is-transparent
+	.navbar-brand
+		a.navbar-item.is-size-3(href="/") DVote
+		.navbar-burger.burger(
+		data-target="navbarExampleTransparentExample")
+			span
+			span
+			span
+
+	#navbarExampleTransparentExample.navbar-menu
+		.navbar-start
+			a.navbar-item(href="/") Home
+			a.navbar-item(href="https://github.com/tDuy/fcc-voting-app" target="_blank") Github Repo
+		.navbar-end
+		if user
+			span.navbar-item Hello #{user.displayName}
+			.navbar-item
+				.field.is-grouped
+					p.control
+						a.bd-tw-button.button(href="/logout") Logout
+		else
+			.navbar-item
+				.field.is-grouped
+					p.control
+						a.button.is-primary(href="/auth/github")
+							span.icon
+								i.fa.fa-github
+							span LOGIN WITH GITHUB

@@ -10,6 +10,7 @@ function PollHandler () {
         var newPoll = new Poll();
         newPoll.question = req.body.ques;
         newPoll.user_id = req.user.github.id;
+        newPoll.user_name = req.user.github.displayName;
         req.body.op.forEach(option => {
             newPoll.options.push({answer: option, count: 0});
         });
@@ -26,7 +27,7 @@ function PollHandler () {
             if(err)
                 throw err;
             console.log("poll created");
-            res.end();
+            res.json({'id': result['_id'] });
         });
         
         // res.end();
@@ -42,6 +43,21 @@ function PollHandler () {
             });
     };
     
+    this.getAllPoll = function getAllPoll(req, res){
+        var obj =  req.isAuthenticated() ? req.user.github : false;
+			// console.log(JSON.stringify(obj));
+		Poll
+		    .find({})
+		    .exec((err, result) => {
+		        if(err)
+		            throw err;
+		        
+		        res.render('index', {'user': obj, 'polls': result, 'edit': false} );        
+		    });
+		
+		
+    }
+    
     this.getOnePoll = function getOnePoll(req, res){
         console.log(req.params.pid);
         Poll
@@ -49,6 +65,7 @@ function PollHandler () {
             .exec((err, result) => {
                 if(err)
                     throw err;
+                
                 console.log(JSON.stringify(result));
                 res.json(result);
             });

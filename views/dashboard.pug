@@ -1,0 +1,64 @@
+doctype html
+head
+	meta(charset='UTF-8')
+	meta(name='viewport' content='width=device-width, initial-scale=1')
+	title Dashboard
+	link(rel='stylesheet'
+		href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css'
+	)
+	link(rel='stylesheet'
+		href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
+	)
+	link(rel='stylesheet'
+		href='/public/css/app.css'
+	)
+body
+include ./includes/nav.pug
+
+section.hero.is-info.is-bold
+	.hero-body
+		.container.has-text-centered
+			if user
+				h1.title.is-1 Dashboard
+				h2.subtitle What would you like to do today?
+				div
+					a#new-poll.button.is-info.is-inverted(href="#") New Poll
+					a#my-polls.button.is-primary.is-inverted.is-outlined My Polls
+
+section.section.columns
+	#content.column.is-half.is-offset-one-quarter
+		p.title.has-text-centered New Poll
+		div.field
+			label.label.has-text-centered Name your poll
+			div.control
+				input.input(type="text" name="ques" placeholder="What is your favorite brand?")
+		div.field
+			label.label.has-text-centered Options
+			div.control
+				input.input(type="text" name="op[]" placeholder="Coke" value="" required="")
+		div.field
+			div.control
+				input.input(type="text" name="op[]" placeholder="Pepsi" value="" required="")
+		div.field.is-grouped.is-grouped-centered
+			div.control
+				button#addOption.button More Options
+		div.field.is-grouped.is-grouped-centered
+			div.control
+				button.button.is-link.submit Submit
+		
+
+script(src='/public/js/nav.js')
+script(src="/common/ajax-functions.js")
+script(src="/public/js/pollController.client.js")
+script.
+	(function(){
+		var newpollBtn = document.getElementById('new-poll');
+		var mypollsBtn = document.getElementById('my-polls');
+		newpollBtn.addEventListener('click', toggleClass);
+		mypollsBtn.addEventListener('click', toggleClass);
+	
+		function toggleClass(){
+			newpollBtn.classList.toggle('is-outlined');
+			mypollsBtn.classList.toggle('is-outlined');
+		}
+	})();
