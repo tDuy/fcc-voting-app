@@ -3,15 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard</title>
+  <title>Poll</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-extensions@0.5.2/bulma-checkradio/bulma-checkradio.min.css">
 
   <style>
-  #content .button {
-    width: 120px;
+  .poll-title {padding: 0 1em;}
+  .column .box {
+    margin-bottom: 0;
   }
-  </style>
+  .btn-vote {margin-top: 1em;}
+</style>
 </head>
 <body>
   <nav class="navbar is-transparent">
@@ -28,12 +31,13 @@
 
     <div id="navbarExampleTransparentExample" class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item" href="#">
+        <a class="navbar-item" href="/">
           Home
         </a>
-         <a class="navbar-item" href="#">
+        <a class="navbar-item" href="#">
           All Polls
         </a>
+        
       </div>
 
       <div class="navbar-end">
@@ -112,46 +116,31 @@
   </section>
 
   <section class="section columns">
-    <div class="column is-half is-offset-one-quarter" id="content">
-      <p class="title has-text-centered">New Poll</p>
-      <div class="field">
-        <label class="label has-text-centered">Name your poll</label>
-        <div class="control">
-          <input class="input" type="text" name="ques" placeholder="What is your favorite brand?">
-        </div>
-      </div>
-
-      <div class="field">
-        <label class="label has-text-centered">Options</label>
-        <div class="control">
-          <input class="input" type="text" name="op[]" placeholder="Coke" value="" required="">
-        </div>
-      </div>
-
-      <div class="field">
-        <div class="control">
-          <input class="input" type="text" name="op[]" placeholder="Pepsi" value="" required="">
-        </div>
-      </div>
-
-      <div class="field is-grouped is-grouped-centered">
-        <div class="control">
-          <button class="button" id="addOption">
-            More Options
-          </button>
-        </div>
-      </div>
-
-      <div class="field is-grouped is-grouped-centered">
-        <div class="control">
-          <button class="button is-link submit">Submit</button>
-        </div>
-      </div>
+    <div class="column is-one-third has-text-centered">
+      <p class="title poll-title"></p>
+      <!--<p class="subtitile">by Quincy</p>-->
+    </div>
+    <div class="column is-half" id="content">
+      <!--<div class="box">-->
+      <!--  <input class="is-checkradio" id="Radio1" type="radio" name="exampleRadioNormal" checked="checked">-->
+      <!--  <label for="Radio1">Piccard</label>-->
+      <!--</div>-->
+      <!--<div class="box">-->
+      <!--  <input class="is-checkradio" id="Radio2" type="radio" name="exampleRadioNormal">-->
+      <!--  <label for="Radio2">Kirk</label>-->
+      <!--</div>-->
+      <!--<div class="field">-->
+      <!--  <button class="button is-primary is-medium btn-vote">Vote</button>-->
+      <!--</div>-->
     </div>
   </section>
 
-  <script type="text/javascript" src="common/ajax-functions.js"></script>
-  <script type="text/javascript" src="controllers/pollController.client.js"></script>
+
+
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+  <script type="text/javascript" src="../common/ajax-functions.js"></script>
+  <script type="text/javascript" src="../controllers/viewPoll.client.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
 
@@ -176,12 +165,7 @@
           });
         });
       }
-
-      
     });
-//--------------------------------------------------
-   
   </script>
-  
 </body>
 </html>
