@@ -47,6 +47,7 @@
        var canvas = document.createElement('canvas');
        canvas.id = 'myChart';
        canvas.width = 400;
+       canvas.height = 200;
 
        while (content.firstChild) {
          content.removeChild(content.firstChild);
