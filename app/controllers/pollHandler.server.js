@@ -52,11 +52,11 @@ function PollHandler () {
 		        if(err)
 		            throw err;
 		        
-		        res.render('index', {'user': obj, 'polls': result, 'edit': false} );        
+		        res.render('index', {'user': obj, 'polls': result} );        
 		    });
 		
 		
-    }
+    };
     
     this.getOnePoll = function getOnePoll(req, res){
         console.log(req.params.pid);

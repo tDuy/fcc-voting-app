@@ -91,16 +91,12 @@
       pollsArray.forEach(poll => {
           var pollUrl = appUrl + '/poll/' + poll['_id'];
           html = `
-         <div class="box level">
-         <div class="level-left">
-          <div class="level-item">
+         <div class="box columns is-vcentered">
+         <div class="column is-three-quarters">
              <a href="${pollUrl}">${poll.question}</a>
-          </div>
          </div>
-         <div class="level-right">
-          <div class="level-item">
+         <div class="column">
              <button data-pollId="${poll['_id']}" class="button is-danger deletePoll">Delete</button>
-          </div>
          </div>
          </div>`;
           document.getElementById('content').innerHTML += html;
@@ -118,7 +114,7 @@
       var delurl = apiUrl + '?pollId=' + event.target.dataset.pollid;
       ajaxFunctions.ajaxRequest('DELETE', delurl, 0, function() {
           event.target.removeEventListener('class', delPoll);
-          event.target.parentNode.parentNode.parentNode.remove();
+          event.target.parentNode.parentNode.remove();
       });
     }
     

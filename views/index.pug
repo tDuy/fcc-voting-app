@@ -11,7 +11,7 @@ head
 	)
 body
 include ./includes/nav.pug
-// include ./includes/hero.pug
+
 section.hero.is-info.is-bold
 	.hero-body
 		.container.has-text-centered
@@ -21,7 +21,6 @@ section.hero.is-info.is-bold
 				a#new-poll.button.is-info.is-inverted(href="/dashboard") Dashboard
 			else
 				a#new-poll.button.is-info.is-inverted(href="/auth/github") Login with Github
-				// a#my-polls.button.is-primary.is-inverted.is-outlined My Polls
 
 include ./includes/view-polls.pug
 

@@ -12,6 +12,9 @@ head
 	link(rel="stylesheet" 
 	href="https://cdn.jsdelivr.net/npm/bulma-extensions@0.5.2/bulma-checkradio/bulma-checkradio.min.css"
 	)
+	link(rel="stylesheet" 
+	href="/public/css/app.css"
+	)
 body
 include ./includes/nav.pug
 
@@ -30,7 +33,7 @@ section.section.columns
 	div.column.is-one-third.has-text-centered
 		p.title.poll-title
 		p.subtitile
-	div#content.column.is-half
+	div#content.column.is-half-desktop.is-two-third-tablet
 
 script(src='/public/js/nav.js')
 script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js')

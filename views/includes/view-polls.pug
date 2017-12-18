@@ -1,12 +1,8 @@
-section.section.columns
-    #content.column.is-half.is-offset-one-quarter
-        each poll in polls
-            -var pollUrl = '/poll/' + poll['_id']
-            .box.level
-                .level-left
-                    level-item
-                        a(href= pollUrl) #{poll.question}
-                if edit
-                    .level-right
-                        .level-item
-                            button.button.is-danger.deletePoll(data-pollid= poll['_id']) Delete
+section.section.columns.is-centered.has-text-centered
+	#content.column.is-half
+		each poll in polls
+			-var pollUrl = '/poll/' + poll['_id']
+			.box.columns.is-vcentered
+				.column
+					a(href= pollUrl) #{poll.question}
+				

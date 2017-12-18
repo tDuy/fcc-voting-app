@@ -4,3 +4,6 @@
 #content .button {
     width: 120px;
 }
+.box label {
+    display: inline-block!important;
+}

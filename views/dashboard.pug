@@ -12,6 +12,11 @@ head
 	link(rel='stylesheet'
 		href='/public/css/app.css'
 	)
+	style.
+		// .box .level-left{
+		// 	display: inline-block;
+		// 	width: 70%;
+		// }
 body
 include ./includes/nav.pug
 
@@ -25,8 +30,8 @@ section.hero.is-info.is-bold
 					a#new-poll.button.is-info.is-inverted(href="#") New Poll
 					a#my-polls.button.is-primary.is-inverted.is-outlined My Polls
 
-section.section.columns
-	#content.column.is-half.is-offset-one-quarter
+section.section.columns.is-centered
+	#content.column.is-half-desktop.is-centered.has-text-centered
 		p.title.has-text-centered New Poll
 		div.field
 			label.label.has-text-centered Name your poll
